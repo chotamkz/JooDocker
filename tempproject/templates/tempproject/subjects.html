@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Hello this my subjects</h1>
+
+    <table style="border: 1px solid black">
+        <thead >
+            <tr>
+                <th colspan="3" style="border: 1px solid black">
+                    My Subjects
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for subject in subjects %}
+                <tr>
+                    <td style="border: 1px solid black">{{ subject.id }}</td>
+                    <td style="border: 1px solid black">{{ subject.name }}</td>
+                    <td style="border: 1px solid black">{{ subject.instructor }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            Are u sure delete this project? {{ project.name}}
+            <input type="submit" value="Remove">
+        </form>
+    </div>
+{% endblock %}

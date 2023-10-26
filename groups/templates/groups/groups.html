@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{%if request.user.is_authenticated %}
+        <p>
+           Hello, <span>{{ request.user }}</span>
+        </p>
+        <a href="{% url 'logoutkz' %}">Logout</a>
+    {% else %}
+        <p>
+            <a href="{% url 'loginkz' %}">Login</a>
+        </p>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'create-groups' %}">Create Group</a>
+    <br>
+    <hr>
+    <table style="border: 1px solid black">
+        <thead>
+            <tr>
+                <th colspan="4" style="border: 1px solid black">
+                    All My Groups
+                </th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+        <tr>
+            <td style="border: 1px solid black">
+                Group Name
+            </td>
+            <td style="border: 1px solid black">
+                Group Description
+            </td>
+            <td style="border: 1px solid black">
+                Group Creator
+            </td>
+            <td style="border: 1px solid black">
+                Group Actions
+            </td>
+        </tr>
+           {% for group in groups %}
+               <tr>
+                   <td style="border: 1px solid black">{{ group.name }}</td>
+                   <td style="border: 1px solid black">{{ group.description }}</td>
+                   <td style="border: 1px solid black">{{ group.creator_id }}</td>
+                   <td style="border: 1px solid black">
+                       {% if request.user == group.creator_id %}
+                       <a href="{% url 'update-groups' group.id%}">Update Groups</a>
+                        <br>
+                       <a href="{% url 'delete-groups' group.id%}">Delete Groups</a>
+                       {% endif %}
+                   </td>
+               </tr>
+
+
+           {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

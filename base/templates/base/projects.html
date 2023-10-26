@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <p>
+           Hello, <span>{{ request.user }}</span>
+        </p>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <p>
+            <a href="{% url 'loginBase' %}">Login</a>
+        </p>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'create-project' %}">Create Projects</a>
+    <br>
+   <!-- {% for project in projects %}
+            <a href="{% url 'update-project' project.id%}">Update Projects - {{ project.name }}</a>
+            <br>
+    {% endfor %} -->
+    <hr>
+    <table style="border: 1px solid black">
+        <thead>
+            <tr>
+                <th colspan="4" style="border: 1px solid black">
+                    All My Projects
+                </th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+        <tr>
+            <td style="border: 1px solid black">
+                Project Name
+            </td>
+            <td style="border: 1px solid black">
+                Project Description
+            </td>
+            <td style="border: 1px solid black">
+                Project Creator
+            </td>
+            <td style="border: 1px solid black">
+                Project Actions
+            </td>
+        </tr>
+           {% for project in projects %}
+               <tr>
+                   <td style="border: 1px solid black">{{ project.name }}</td>
+                   <td style="border: 1px solid black">{{ project.description }}</td>
+                   <td style="border: 1px solid black">{{ project.creater_id }}</td>
+                   <td style="border: 1px solid black">
+                       {% if request.user == project.creater_id %}
+                       <a href="{% url 'update-project' project.id%}">Update Projects</a>
+                        <br>
+                       <a href="{% url 'delete-project' project.id%}">Delete Project</a>
+                       {% endif %}
+                   </td>
+               </tr>
+
+
+           {% endfor %}
+        </tbody>
+    </table>
+{% endblock content%}
