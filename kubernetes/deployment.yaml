@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: django-app
+  template:
+    metadata:
+      labels:
+        app: django-app
+    spec:
+      containers:
+        - name: django-app
+          image: chotam/joo:python-dev
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: 200m
+              memory: 300Mi
