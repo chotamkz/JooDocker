@@ -78,6 +78,22 @@ TEMPLATES = [
     },
 ]
 
+
+
+
+DATABASE = {
+    'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '6A-CGaa6fDeF6G6DAe3GFBbC2aEcE6EA',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': '11389',
+    }
+}
+
+
 WSGI_APPLICATION = 'helloworld.wsgi.application'
 
 # Database
@@ -89,6 +105,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
