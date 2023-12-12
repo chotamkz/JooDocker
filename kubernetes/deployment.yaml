@@ -1,20 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django-deployment
+  name: nginx-deployment
 spec:
-  replicas: 2
   selector:
     matchLabels:
-      app: django-app
+      app: nginx
+  replicas: 2
   template:
     metadata:
       labels:
-        app: django-app
+        app: nginx
     spec:
       containers:
-        - name: django-app
-          image: nginx:latest
-          ports:
-            - containerPort: 8000
+      - name: nginx
+        image: nginx:latest
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "256Mi"
+          requests:
+            cpu: "0.25"
+            memory: "128Mi"
+        ports:
+        - containerPort: 80
 
