@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: django-deployment
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: django
   replicas: 2
   template:
     metadata:
       labels:
-        app: nginx
+        app: django
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: django
+        image: chotam/joo:python-dev
         resources:
           limits:
             cpu: "0.5"
