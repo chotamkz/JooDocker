@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: django
+        image: nginx
         resources:
           limits:
             cpu: "0.5"
