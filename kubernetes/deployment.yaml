@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: chotam/joo:python-dev
+        image: django
         resources:
           limits:
             cpu: "0.5"
